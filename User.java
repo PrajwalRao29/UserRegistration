@@ -56,7 +56,7 @@ public class User {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter your password");
 		String s=scanner.next();
-		if (Pattern.matches("(.*[A-Z].*)",s) && Pattern.matches("[\\S]{8,}",s) && Pattern.matches("(.*[0-9].*)",s)) {
+		if (Pattern.matches("(.*[A-Z].*)",s) && Pattern.matches("[\\S]{8,}",s) && Pattern.matches("(.*[0-9].*)",s) && Pattern.matches("(.*[\\W]{1}.*)",s)) {
 			System.out.println("Valid password");
 			return true;
 		} else {
