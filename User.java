@@ -55,12 +55,13 @@ public class User {
 	public static boolean passwordCheck() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter your password");
-		if (Pattern.matches("[\\S]{8,}", scanner.next())) {
+		String s=scanner.next();
+		if (Pattern.matches("(.*[A-Z].*)",s) && Pattern.matches("[\\S]{8,}",s) && Pattern.matches("(.*[0-9].*)",s)) {
 			System.out.println("Valid password");
 			return true;
 		} else {
 			System.out.println("Invalid password , Please repeat.");
-			return mobileCheck();
+			return passwordCheck();
 		}
 	}
 
