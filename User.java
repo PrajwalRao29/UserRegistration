@@ -13,6 +13,7 @@ public class User {
 			return true;
 		}
 	}
+
 	public static boolean LastNameCheck() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter Last Name");
@@ -25,23 +26,50 @@ public class User {
 		}
 	}
 
-	public static boolean emailCheck()
-	{	Scanner scanner = new Scanner(System.in);
+	public static boolean emailCheck() {
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter your email");
-		if(Pattern.matches("[\\w]{2,}([.][a-zA-Z]{2,})*[@]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,}([.][a-zA-Z]{2,})*",scanner.next()))
-				{
+		if (Pattern.matches("[\\w]{2,}([.][a-zA-Z]{2,})*[@]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,}([.][a-zA-Z]{2,})*",
+				scanner.next())) {
 			System.out.println("Valid Email");
 			return true;
-				}
-		else {
+		} else {
 			System.out.println("Invalid Email , Please repeat.");
 			return emailCheck();
 		}
 	}
+
+	public static boolean mobileCheck() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter your mobile number along with country code");
+		String s=scanner.nextLine();
+		if (Pattern.matches("[1-9]{1}[0-9]{1}[\\s]{1}[1-9]{1}[0-9]{9}", s)) {
+			System.out.println("Valid mobile phone");
+			return true;
+		} else {
+			System.out.println("Invalid mobile number , Please repeat.");
+			return mobileCheck();
+		}
+	}
+
+	public static boolean passwordCheck() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter your password");
+		if (Pattern.matches("[\\S]{8,}", scanner.next())) {
+			System.out.println("Valid password");
+			return true;
+		} else {
+			System.out.println("Invalid password , Please repeat.");
+			return mobileCheck();
+		}
+	}
+
 	public static void main(String[] args) {
 
 		FirstNameCheck();
 		LastNameCheck();
 		emailCheck();
+		mobileCheck();
+		passwordCheck();
 	}
 }
