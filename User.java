@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class User {
@@ -29,7 +30,8 @@ public class User {
 	public static boolean emailCheck() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter your email");
-		if (Pattern.matches("[\\w]{2,}([.][a-zA-Z]{2,})*[@]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,}([.][a-zA-Z]{2,})*",
+		if (Pattern.matches(
+				"[\\w]{1,}([.][a-zA-Z0-9]{1,})*([-][a-zA-Z0-9]{1,})*([+][a-zA-Z0-9]{1,})*[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-zA-Z]{2,}([.][a-zA-Z]{2,})?",
 				scanner.next())) {
 			System.out.println("Valid Email");
 			return true;
@@ -42,7 +44,7 @@ public class User {
 	public static boolean mobileCheck() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter your mobile number along with country code");
-		String s=scanner.nextLine();
+		String s = scanner.nextLine();
 		if (Pattern.matches("[1-9]{1}[0-9]{1}[\\s]{1}[1-9]{1}[0-9]{9}", s)) {
 			System.out.println("Valid mobile phone");
 			return true;
@@ -55,18 +57,30 @@ public class User {
 	public static boolean passwordCheck() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter your password");
-		String s=scanner.next();
-		if (Pattern.matches("(.*[A-Z].*)",s) && Pattern.matches("[\\S]{8,}",s) && Pattern.matches("(.*[0-9].*)",s) && Pattern.matches("(.*[\\W]{1}.*)",s)) {
-			System.out.println("Valid password");
-			return true;
-		} else {
-			System.out.println("Invalid password , Please repeat.");
-			return passwordCheck();
+		String s = scanner.next();
+		if (Pattern.matches("(.*[A-Z].*)", s) && Pattern.matches("[\\S]{8,}", s) && Pattern.matches("(.*[0-9].*)", s)) {
+			String p = "[\\W]";
+			Pattern r = Pattern.compile(p);
+			Matcher m = r.matcher(s);
+			int count = 0;
+			while (m.find()) {
+				count++;
+			}
+			if (count == 1) {
+				System.out.println("valid password");
+				return true;
+			}
+
+			else {
+				System.out.println("invalid password");
+				return false;
+			}
 		}
+		System.out.println("invalid password");
+		return false;
 	}
-
+	
 	public static void main(String[] args) {
-
 		FirstNameCheck();
 		LastNameCheck();
 		emailCheck();
