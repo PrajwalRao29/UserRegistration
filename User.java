@@ -29,7 +29,7 @@ public class User {
 	public static boolean emailCheck() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter your email");
-		if (Pattern.matches("[\\w]{2,}([.][a-zA-Z]{2,})*[@]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,}([.][a-zA-Z]{2,})*",
+		if (Pattern.matches("[\\w]{1,}([.][a-zA-Z0-9]{1,})*([-][a-zA-Z0-9]{1,})*([+][a-zA-Z0-9]{1,})*[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-zA-Z]{2,}([.][a-zA-Z]{2,})?",
 				scanner.next())) {
 			System.out.println("Valid Email");
 			return true;
