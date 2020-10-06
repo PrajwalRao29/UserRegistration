@@ -10,7 +10,7 @@ public class TestUser {
     @Test
     public void test2FirstName_SmallLetterFirst()
     {
-        Assert.assertTrue(user.FirstNameCheck("prajwal"));
+        Assert.assertFalse(user.FirstNameCheck("prajwal"));
     }
     @Test
     public void test3LastName_CapitalLetterFirst()
@@ -20,7 +20,7 @@ public class TestUser {
     @Test
     public void test4LastName_SmallLetterFirst()
     {
-        Assert.assertTrue(user.FirstNameCheck("prajwal"));
+        Assert.assertFalse(user.FirstNameCheck("prajwal"));
     }
     @Test
     public void test5Email_CheckifNonMandatoryEmailPartNotFound()
@@ -30,7 +30,7 @@ public class TestUser {
     @Test
     public void test6Email_CheckMandatoryEmailPartNotFound()
     {
-        Assert.assertTrue(user.emailCheck(".xyz@bl"));
+        Assert.assertFalse(user.emailCheck(".xyz@bl"));
     }
     @Test
     public void test7mobile_WithSpace()
@@ -40,12 +40,12 @@ public class TestUser {
     @Test
     public void test8mobile_WithoutSpace()
     {
-        Assert.assertTrue(user.mobileCheck("918861356135"));
+        Assert.assertFalse(user.mobileCheck("918861356135"));
     }
     @Test
     public void test9mobile_WithoutFormat()
     {
-        Assert.assertTrue(user.mobileCheck("917 886135613"));
+        Assert.assertFalse(user.mobileCheck("917 886135613"));
     }
     @Test
     public void test10password_AllCaseMatch()
@@ -55,21 +55,21 @@ public class TestUser {
     @Test
     public void test11password_NoCapitalCase()
     {
-        Assert.assertTrue(user.passwordCheck("pr@jwalr1"));
+        Assert.assertFalse(user.passwordCheck("pr@jwalr1"));
     }
     @Test
     public void test12password_LessThan8Characters()
     {
-        Assert.assertTrue(user.passwordCheck("pr@jwa1"));
+        Assert.assertFalse(user.passwordCheck("pr@jwa1"));
     }
     @Test
     public void test13password_NoNumeric()
     {
-        Assert.assertTrue(user.passwordCheck("pr@jwalr"));
+        Assert.assertFalse(user.passwordCheck("pr@jwalr"));
     }
     @Test
     public void test14password_2SpecialCharacters()
     {
-        Assert.assertTrue(user.passwordCheck("pr@jw@lr1"));
+        Assert.assertFalse(user.passwordCheck("pr@jw@lr1"));
     }
 }
