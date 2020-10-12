@@ -49,7 +49,7 @@ public class PTestUser {
     }
     @Test
     public void testEmail_ValidSamples() {
-        Assert.assertEquals(user.emailCheck(str), expected);
+        Assert.assertEquals(user.Operation(str,user.emailCheck), expected);
     }
 }
 
