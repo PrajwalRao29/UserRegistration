@@ -10,7 +10,15 @@ class InvalidDetailsException extends Exception {
 }
 
 public class User {
-    public static boolean FirstNameCheck(String str) {
+    @FunctionalInterface
+    interface Validate {
+        boolean Check(String str);
+    }
+
+    public boolean Operation(String str, Validate validate){
+        return validate.Check(str);
+    }
+    public static Validate firstNameCheck = (String str) -> {
         try {
             if (!Pattern.matches("[A-Z]{1}[a-z]{2,}", str)) {
                 throw new InvalidDetailsException();
@@ -21,9 +29,8 @@ public class User {
         } catch (InvalidDetailsException e) {
             return false;
         }
-    }
-
-    public static boolean LastNameCheck(String str) {
+    };
+    public static Validate lastNameCheck = (String str) -> {
         try {
             if (!Pattern.matches("[A-Z]{1}[a-z]{2,}", str)) {
                 throw new InvalidDetailsException();
@@ -34,9 +41,8 @@ public class User {
         } catch (InvalidDetailsException e) {
             return false;
         }
-    }
-
-    public static boolean emailCheck(String str) {
+    };
+    public static Validate emailCheck = (String str) -> {
         try {
             if (Pattern.matches("[\\w]{1,}([.][a-zA-Z0-9]{1,})*([-][a-zA-Z0-9]{1,})*([+][a-zA-Z0-9]{1,})*[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-zA-Z]{2,}([.][a-zA-Z]{2,})?",
                     str)) {
@@ -48,9 +54,8 @@ public class User {
         } catch (InvalidDetailsException e) {
             return false;
         }
-    }
-
-    public static boolean mobileCheck(String str) {
+    };
+    public static Validate mobileCheck = (String str) -> {
         try {
             if (Pattern.matches("[1-9]{1}[0-9]{1}[\\s]{1}[1-9]{1}[0-9]{9}", str)) {
                 System.out.println("Valid mobile phone");
@@ -61,9 +66,8 @@ public class User {
         } catch (InvalidDetailsException e) {
             return false;
         }
-    }
-
-    public static boolean passwordCheck(String str) {
+    };
+    public static Validate passwordCheck = (String str) -> {
         try {
             if (Pattern.matches("(.*[A-Z].*)", str) && Pattern.matches("[\\S]{8,}", str) && Pattern.matches("(.*[0-9].*)", str)) {
                 String p = "[\\W]";
@@ -82,9 +86,11 @@ public class User {
         } catch (InvalidDetailsException e) {
             return false;
         }
-    }
+    };
 
     public static void main(String[] args) {
         User user = new User();
+        user.Operation("Prajwal",firstNameCheck);
+
     }
 }
